@@ -4,9 +4,11 @@
   "description": "Blog(NodeJS)",
   "main": "src/index.js",
   "scripts": {
+    "beautiful": "lint-staged",
     "start": "nodemon --inspect src/index.js",
     "watch": "node-sass --watch src/resources/scss/ --output src/public/css/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "true",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -21,13 +23,24 @@
     "url": "https://github.com/dimlyy/Blog_NodeJS/issues"
   },
   "homepage": "https://github.com/dimlyy/Blog_NodeJS#readme",
+  "lint-staged": {
+    "src/**/*.{js,json,scss}": "prettier package.json --write --single-quote --tab-width 4 --trailing-comma all"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "dependencies": {
     "express": "^4.21.1",
     "express-handlebars": "^8.0.1"
   },
   "devDependencies": {
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
     "morgan": "^1.10.0",
     "node-sass": "^9.0.0",
-    "nodemon": "^3.1.7" 
+    "nodemon": "^3.1.7",
+    "prettier": "^3.3.3"
   }
 }
